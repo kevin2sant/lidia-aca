@@ -1,14 +1,13 @@
 import { createStore } from 'vuex'
 
-export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+import propertys from './propertys/PropertysStore'
+import contracts from './propertys/ContractStore'
+
+const store = createStore({
   modules: {
+    propertys,
+    contracts
   }
 })
+
+export default store
