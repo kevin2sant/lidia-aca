@@ -51,7 +51,28 @@ const propertys = {
     async managementValidate(context, data){
       const res = await api.get(`management/validate/${data.idproperty}/${data.type}`)
       return res.data
+    },
+
+    async sendRequestTenant(context, body ){
+      const res = await api.post(`management/sendFormTenant`, body)
+      return res.data
+    },
+
+    async sendRequestLessor(context, body ){
+      const res = await api.post(`management/sendFormLessor`, body)
+      return res.data
+    },
+
+    async validateTenant(context, id ){
+      const res = await api.get(`management/validateResponse/${id}/1`)
+      return res.data
+    },
+    
+    async validateLessor(context, id ){
+      const res = await api.get(`management/validateResponse/${id}/2`)
+      return res.data
     }
+
   }
 }
 

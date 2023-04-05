@@ -1,7 +1,7 @@
 <template>
     <header class="header" id="header">
       <a @click="openMenu()" class="btn open-menu" href="#" role="button" style="background-color: #92dde4;color: #fff;">
-        <i class="fas fa-align-left"></i>
+        <i class='bx bx-menu'></i>
       </a>
     </header>
     <!-- Sidebar -->
@@ -9,7 +9,7 @@
         
         <!-- close sidebar menu -->
         <div class="dismiss" @click="dismissOverlay()">
-            <i class="fas fa-arrow-left"></i>
+          <i class='bx bx-menu'></i>
         </div>
         
         <div class="logo">

@@ -25,7 +25,12 @@
                                 <td><strong>{{ property.i_idproperty }}</strong></td>
                                 <td>{{ property.v_address }}</td>
                                 <td>{{ property.v_name }}</td>
-                                <td>a</td>
+                                <td style="text-align: center;">
+                                    <span v-if="property.b_mail_one == true && property.b_mail_response_one == false" title="Correo de arrendatario enviado"><i class='bx bx-user bx-md text-info'></i></span>
+                                    <span v-if="property.b_mail_one == true && property.b_mail_response_one == true" title="Correo de arrendatario respondido"><i class='bx bx-user-check bx-md text-info'></i></span>
+                                    <span v-if="property.b_mail_two == true && property.b_mail_response_two == false" title="Correo de arrendador enviado"><i class='bx bxs-user bx-md text-primary'></i></span>
+                                    <span v-if="property.b_mail_two == true && property.b_mail_response_two == true" title="Correo de arrendador recibido"><i class='bx bxs-user-check bx-md text-primary'></i></span>
+                                </td>
                                 <td>
                                     <div class="row">
                                         <div class="col"><router-link class="btn btn-warning btn-block" :to="{name : 'propertyid', params : {id : property.i_idproperty}}">Editar</router-link></div>
@@ -35,10 +40,10 @@
                                         <div class="col">
                                             <button class="btn btn-primary btn-block" @click="sendMail(property.i_idproperty,2)">Arrendador</button>
                                         </div>
+                                        <div class="col">
+                                            <button class="btn btn-success btn-block" @click="makeContract(property.i_idproperty,2)">Contrato</button>
+                                        </div>
                                     </div>
-                                    
-                                    
-                                    
                                 </td>
                             </tr>
                         </tbody>
@@ -58,6 +63,7 @@
             <div class='principal-row' id='contentCreate' style='margin: 0px;padding:20px'>
                 <div>
                     <SendMail 
+                        @refreshTable="refreshTable"
                         v-if="this.type == 1" 
                         :idproperty="this.idproperty" 
                         msg="Arrendatario" 
@@ -65,6 +71,7 @@
                     </SendMail>
 
                     <SendMail 
+                        @refreshTable="refreshTable"
                         v-if="this.type == 2" 
                         :idproperty="this.idproperty" 
                         msg="Arrendador" 
@@ -134,6 +141,10 @@ export default {
 
             this.view = false
             
+        },
+
+        async makeContract(){
+            console.log(1)
         }
     }
 }

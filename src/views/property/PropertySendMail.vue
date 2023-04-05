@@ -44,6 +44,7 @@
 
 <script>
 export default {
+    emits: ['refreshTable'],
     data(){
         return {
             view : 1,
@@ -51,10 +52,6 @@ export default {
             mail : '',
             phone : ''
         }
-    },
-    mounted() {
-        // this.managementValidate()
-        console.log(this.view)
     },
     name: 'SendMail',
     props: {
@@ -78,12 +75,10 @@ export default {
 
                 if (res.status == "success"){
                     this.view = 2
+                    console.log('llego')
+                    this.$emit('refreshTable')
                 }
             }
-           
-
-            
-            
         }
 
     }
